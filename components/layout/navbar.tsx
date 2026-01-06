@@ -17,34 +17,45 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+    <nav className="fixed top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Global">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-24 items-center justify-between">
           {/* Logo */}
           <div className="flex lg:flex-1">
-            <Link href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">SoundBridge Financial</span>
+            <Link href="/" className="flex items-center gap-4">
               <Image
                 src="/brand/soundbridge_logo_transparent_2048.png"
-                alt="SoundBridge Financial"
-                width={180}
-                height={60}
-                className="h-12 w-auto"
+                alt="SoundBridge"
+                width={520}
+                height={170}
                 priority
+                sizes="(min-width: 1024px) 320px, (min-width: 768px) 260px, 220px"
+                className="h-[76px] w-auto md:h-[82px] lg:h-[88px]"
               />
+
+              {/* Wordmark extension */}
+              <span className="hidden sm:flex items-center gap-4 pl-2">
+                <span className="h-8 w-px bg-slate-200" aria-hidden="true" />
+                <span className="flex flex-col leading-none">
+                  <span className="text-sm md:text-base font-semibold tracking-tight text-slate-900">
+                    Financial
+                  </span>
+                  <span className="mt-1.5 text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                    Strategies
+                  </span>
+                </span>
+              </span>
             </Link>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex lg:gap-x-8">
+          <div className="hidden lg:flex lg:gap-x-10">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-forest-600 ${
-                  item.secondary
-                    ? "text-gray-500"
-                    : "text-gray-900"
+                className={`text-sm md:text-[15px] font-medium tracking-[0.02em] transition-colors hover:text-slate-950 ${
+                  item.secondary ? "text-slate-500" : "text-slate-700"
                 }`}
               >
                 {item.name}
@@ -56,7 +67,7 @@ export function Navbar() {
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link
               href="/contact"
-              className="rounded-md bg-forest-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-forest-700 transition-colors"
+              className="rounded-md bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-800"
             >
               Schedule a Conversation
             </Link>
@@ -88,10 +99,10 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`block rounded-lg px-3 py-2 text-base font-semibold ${
+                className={`block rounded-lg px-3 py-2 text-base font-semibold tracking-tight ${
                   item.secondary
-                    ? "text-gray-500 hover:bg-gray-50"
-                    : "text-gray-900 hover:bg-gray-50"
+                    ? "text-slate-500 hover:bg-slate-50"
+                    : "text-slate-900 hover:bg-slate-50"
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -100,7 +111,7 @@ export function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="block rounded-lg bg-forest-600 px-3 py-2.5 text-center text-base font-semibold text-white hover:bg-forest-700"
+              className="block rounded-lg bg-slate-900 px-3 py-3 text-center text-base font-semibold text-white hover:bg-slate-800"
               onClick={() => setMobileMenuOpen(false)}
             >
               Schedule a Conversation
@@ -112,3 +123,4 @@ export function Navbar() {
   );
 }
 
+export default Navbar;

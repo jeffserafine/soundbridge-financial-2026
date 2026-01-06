@@ -1,72 +1,62 @@
 import Link from "next/link";
-import { SectionHeading } from "@/components/ui/section-heading";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Handshake, Shield, Users, TrendingUp } from "lucide-react";
-
-const features = [
-  {
-    icon: Handshake,
-    title: "Partnership Approach",
-    description: "We work alongside trusted advisors to enhance your service offerings with specialized protection strategies.",
-  },
-  {
-    icon: Shield,
-    title: "Expert Resources",
-    description: "Access to advanced planning tools, case studies, and white-label solutions for your clients.",
-  },
-  {
-    icon: Users,
-    title: "Client Retention",
-    description: "Comprehensive solutions that deepen client relationships and provide ongoing value.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Revenue Growth",
-    description: "Expand your service offerings and create additional revenue streams through strategic partnerships.",
-  },
-];
 
 export function Alliance() {
   return (
-    <section className="py-24 sm:py-32 bg-gray-50">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <Badge variant="accent" className="mb-4">For Advisors</Badge>
-          <SectionHeading
-            title="Alliance Partner Program"
-            subtitle="Partner with SoundBridge to offer your clients comprehensive protection and planning solutions"
-            align="center"
-          />
-        </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-16">
-          {features.map((feature) => {
-            const Icon = feature.icon;
-            return (
-              <div
-                key={feature.title}
-                className="relative rounded-2xl bg-white p-8 shadow-sm"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-forest-600 text-white">
-                  <Icon className="h-6 w-6" aria-hidden="true" />
-                </div>
-                <h3 className="mt-6 text-lg font-semibold leading-8 text-gray-900">
-                  {feature.title}
-                </h3>
-                <p className="mt-2 text-base leading-7 text-gray-600">
-                  {feature.description}
-                </p>
-              </div>
-            );
-          })}
-        </div>
-        <div className="mt-12 text-center">
+    <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <div className="mx-auto max-w-3xl text-center">
+        <p className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold tracking-wide text-slate-700">
+          For Advisors
+        </p>
+        <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+          Alliance Partner Program
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-slate-600">
+          Partner with SoundBridge to offer your clients comprehensive protection and planning
+          solutions.
+        </p>
+
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button asChild size="lg">
-            <Link href="/alliances">Learn About Our Alliance Program</Link>
+            <Link href="/contact">Schedule a Conversation</Link>
           </Button>
+          <Button asChild variant="outline" size="lg">
+            <Link href="/how-it-works">Learn More</Link>
+          </Button>
+        </div>
+      </div>
+
+      <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 className="text-base font-semibold text-slate-900">Partnership Approach</h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            We work alongside trusted advisors to enhance your service offerings with specialized
+            protection strategies.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 className="text-base font-semibold text-slate-900">Expert Resources</h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Access to advanced planning tools, case studies, and white-label solutions for your
+            clients.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 className="text-base font-semibold text-slate-900">Client Retention</h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Comprehensive solutions that deepen client relationships and provide ongoing value.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <h3 className="text-base font-semibold text-slate-900">Revenue Growth</h3>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">
+            Expand your service offerings and create additional revenue streams through strategic
+            partnerships.
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
+export default Alliance;

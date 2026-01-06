@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "SoundBridge Financial | Strategy-First Protection & Planning",
-  description: "Modern protection and planning strategies for high-performing individuals and business owners. Alliance programs for trusted advisors.",
+  description:
+    "Modern protection and planning strategies for high-performing individuals and business owners. Alliance programs for trusted advisors.",
 };
 
 export default function RootLayout({
@@ -24,10 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <MainLayout>{children}</MainLayout>
       </body>
     </html>

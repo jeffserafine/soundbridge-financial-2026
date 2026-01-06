@@ -1,56 +1,57 @@
-import { SectionHeading } from "@/components/ui/section-heading";
-import { CheckCircle2 } from "lucide-react";
-
 const steps = [
   {
-    number: "01",
-    title: "Discovery",
-    description: "We start with a comprehensive understanding of your financial landscape, goals, and unique circumstances.",
+    title: "Clarify",
+    desc: "We map your current coverage, obligations, cash flow reality, and the risks that actually matter.",
   },
   {
-    number: "02",
-    title: "Strategy Design",
-    description: "Custom protection and planning strategies are designed specifically for your situation and objectives.",
+    title: "Architect",
+    desc: "We design a clean strategy that coordinates with your tax and legal world, not against it.",
   },
   {
-    number: "03",
-    title: "Implementation",
-    description: "We guide you through the implementation process, ensuring every detail is handled with precision.",
+    title: "Implement",
+    desc: "Execution is deliberate, documented, and reviewed. No chaos. No surprises.",
   },
   {
-    number: "04",
-    title: "Ongoing Partnership",
-    description: "Regular reviews and adjustments keep your strategy aligned with your evolving needs and goals.",
+    title: "Maintain",
+    desc: "We keep it current with a simple cadence, so the plan stays aligned as life changes.",
   },
 ];
 
 export function Blueprint() {
   return (
-    <section className="py-24 sm:py-32 bg-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeading
-          title="Our Blueprint"
-          subtitle="A structured approach to financial protection and planning that adapts to your unique needs"
-        />
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-4">
-            {steps.map((step) => (
-              <div key={step.number} className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-forest-600 text-white text-sm font-bold">
-                    {step.number}
-                  </span>
-                  {step.title}
-                </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{step.description}</p>
-                </dd>
-              </div>
-            ))}
-          </dl>
+    <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="text-center">
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
+            How it works
+          </h1>
+          <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-slate-600">
+            A simple, confidence-building process designed for busy, high-performing clients.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {steps.map((s) => (
+            <div
+              key={s.title}
+              className="rounded-2xl border border-slate-200 bg-white/70 backdrop-blur p-8 shadow-sm"
+            >
+              <div className="text-sm font-semibold tracking-wide text-emerald-700">{s.title}</div>
+              <p className="mt-3 text-base leading-relaxed text-slate-700">{s.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm leading-relaxed text-slate-600">
+          <p>
+            Disclosures: This content is for informational purposes only and is not intended as tax or legal
+            advice. Insurance and financial strategies vary by individual circumstances. Consult your own
+            advisors.
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
+export default Blueprint;

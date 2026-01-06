@@ -1,61 +1,98 @@
-import { SectionHeading } from "@/components/ui/section-heading";
-import { Badge } from "@/components/ui/badge";
-import { Users, Briefcase, Music, Stethoscope } from "lucide-react";
+export type AudienceCard = {
+  title: string;
+  description: string;
+  bullets: string[];
+};
 
-const services = [
+const audiences: AudienceCard[] = [
   {
-    icon: Stethoscope,
-    title: "Physicians",
-    description: "Protection strategies designed for medical professionals navigating complex income structures and liability concerns.",
+    title: "Physicians and medical professionals",
+    description:
+      "Complex income, high liability exposure, and time pressure demand clean, proactive planning.",
+    bullets: [
+      "Income protection that matches real earning power",
+      "Tax-aware strategy coordination",
+      "Simple review cadence and clean documentation",
+    ],
   },
   {
-    icon: Music,
-    title: "Entertainers",
-    description: "Financial planning that adapts to variable income streams, touring schedules, and unique asset protection needs.",
+    title: "Entrepreneurs and business owners",
+    description:
+      "You built something valuable. We help protect the people, cash flow, and equity behind it.",
+    bullets: [
+      "Key person and buy-sell funding design",
+      "Coverage architecture for founders",
+      "Planning that respects entity structure",
+    ],
   },
   {
-    icon: Briefcase,
-    title: "Entrepreneurs",
-    description: "Strategic planning for business owners managing company and personal finances with maximum efficiency.",
+    title: "Entertainers, creators, and athletes",
+    description:
+      "High variance income, short peak windows, and reputational risk need disciplined structure.",
+    bullets: [
+      "Contract-driven protection planning",
+      "Cash flow and risk alignment",
+      "Coordination with trusted advisors",
+    ],
   },
   {
-    icon: Users,
-    title: "High-Performing Individuals",
-    description: "Comprehensive protection and planning solutions tailored to your unique financial landscape and goals.",
+    title: "C-suite executives and partners",
+    description:
+      "Concentrated compensation and time scarcity call for strategy-first, low-friction execution.",
+    bullets: [
+      "Executive benefits awareness",
+      "Tax-aware protection and accumulation",
+      "A process built for busy calendars",
+    ],
+  },
+  {
+    title: "High net worth individuals",
+    description:
+      "When assets grow, complexity grows. We keep the plan coherent and coordinated.",
+    bullets: [
+      "Policy structure and review discipline",
+      "Legacy-aware planning coordination",
+      "Documentation your advisors can trust",
+    ],
   },
 ];
 
 export function WhoWeServe() {
   return (
-    <section className="py-24 sm:py-32 bg-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <SectionHeading
-          title="Who We Serve"
-          subtitle="Specialized financial protection and planning for those who need more than standard solutions"
-        />
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((service) => {
-            const Icon = service.icon;
-            return (
-              <div
-                key={service.title}
-                className="relative rounded-2xl bg-gray-50 p-8 transition-shadow hover:shadow-lg"
-              >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-forest-600 text-white">
-                  <Icon className="h-6 w-6" aria-hidden="true" />
-                </div>
-                <h3 className="mt-6 text-lg font-semibold leading-8 text-gray-900">
-                  {service.title}
-                </h3>
-                <p className="mt-2 text-base leading-7 text-gray-600">
-                  {service.description}
-                </p>
-              </div>
-            );
-          })}
+    <section className="px-6 py-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+            Who we serve
+          </h2>
+          <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto">
+            Strategy-first protection and planning for people with modern income, modern risk, and zero time
+            for messy implementation.
+          </p>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {audiences.map((a) => (
+            <div
+              key={a.title}
+              className="rounded-2xl border border-slate-200 bg-white/70 backdrop-blur p-8 shadow-sm"
+            >
+              <h3 className="text-xl font-semibold text-slate-900">{a.title}</h3>
+              <p className="mt-2 text-slate-600">{a.description}</p>
+              <ul className="mt-4 space-y-2 text-slate-700">
+                {a.bullets.map((b) => (
+                  <li key={b} className="flex gap-2">
+                    <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" aria-hidden="true" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
+export default WhoWeServe;

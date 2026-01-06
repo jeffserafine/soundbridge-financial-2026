@@ -20,21 +20,23 @@ export function Header() {
     <header className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
       <nav className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Global">
         <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
-          <div className="flex lg:flex-1">
-            <Link href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">SoundBridge Financial</span>
-              <Image
-                src="/brand/soundbridge_logo_transparent_2048.png"
-                alt="SoundBridge Financial"
-                width={180}
-                height={60}
-                className="h-12 w-auto"
-                priority
-              />
-            </Link>
-          </div>
+{/* Logo */}
+<div className="flex lg:flex-1">
+  <Link href="/" className="flex items-center gap-3">
+    <Image
+      src="/brand/soundbridge_logo_transparent_2048.png"
+      alt="SoundBridge"
+      width={340}
+      height={120}
+      priority
+      className="h-14 w-auto md:h-16 lg:h-24"
+    />
 
+    <span className="hidden sm:inline text-sm md:text-base font-semibold text-slate-900 tracking-tight">
+      Financial Strategies
+    </span>
+  </Link>
+</div>
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:gap-x-8">
             {navigation.map((item) => (
