@@ -3,10 +3,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navigation = [
     { name: "Home", href: "/" },
@@ -40,7 +42,7 @@ export function Navbar() {
                   <span className="text-sm md:text-base font-semibold tracking-tight text-slate-900">
                     Financial
                   </span>
-                  <span className="mt-1.5 text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                  <span className="mt-1 text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
                     Strategies
                   </span>
                 </span>
@@ -54,9 +56,14 @@ export function Navbar() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`text-sm md:text-[15px] font-medium tracking-[0.02em] transition-colors hover:text-slate-950 ${
-                  item.secondary ? "text-slate-500" : "text-slate-700"
-                }`}
+                aria-current={pathname === item.href ? "page" : undefined}
+                className={
+                  "relative text-base font-semibold tracking-[0.01em] transition-colors " +
+                  (item.secondary ? "text-slate-500 " : "text-slate-700 ") +
+                  "hover:text-slate-950 " +
+                  "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-gradient-to-r after:from-emerald-600 after:to-lime-500 after:transition-transform after:duration-200 hover:after:scale-x-100 " +
+                  (pathname === item.href ? "text-slate-950 after:scale-x-100" : "")
+                }
               >
                 {item.name}
               </Link>
