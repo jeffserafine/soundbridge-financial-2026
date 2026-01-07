@@ -6,16 +6,23 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
+const SCHEDULING_URL = "https://calendar.app.google/4hWgcNAGEZ6qp9nJA";
+
+type NavItem = {
+  name: string;
+  href: string;
+  accent?: "gold";
+};
+
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  const navigation = [
+  const navigation: NavItem[] = [
     { name: "Home", href: "/" },
-    { name: "For Individuals", href: "/individuals" },
     { name: "How It Works", href: "/how-it-works" },
-    { name: "Contact", href: "/contact" },
-    { name: "Alliances", href: "/alliances", secondary: true },
+    { name: "Who We Serve", href: "/individuals" },
+    { name: "Alliances", href: "/alliances", accent: "gold" },
   ];
 
   return (
@@ -52,28 +59,44 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:gap-x-10">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                aria-current={pathname === item.href ? "page" : undefined}
-                className={
-                  "relative text-base font-semibold tracking-[0.01em] transition-colors " +
-                  (item.secondary ? "text-slate-500 " : "text-slate-700 ") +
-                  "hover:text-slate-950 " +
-                  "after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-gradient-to-r after:from-emerald-600 after:to-lime-500 after:transition-transform after:duration-200 hover:after:scale-x-100 " +
-                  (pathname === item.href ? "text-slate-950 after:scale-x-100" : "")
-                }
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navigation.map((item) => {
+              const isActive = pathname === item.href;
+              const isGold = item.accent === "gold";
+
+              const baseText = isGold ? "text-amber-700" : "text-slate-700";
+              const hoverText = isGold ? "hover:text-amber-800" : "hover:text-slate-950";
+              const underlineGradient = isGold
+                ? "after:bg-gradient-to-r after:from-amber-500 after:to-yellow-400"
+                : "after:bg-gradient-to-r after:from-emerald-600 after:to-lime-500";
+
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  aria-current={isActive ? "page" : undefined}
+                  className={
+                    "relative text-base font-semibold tracking-[0.01em] transition-colors " +
+                    baseText +
+                    " " +
+                    hoverText +
+                    " after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 " +
+                    underlineGradient +
+                    " after:transition-transform after:duration-200 hover:after:scale-x-100 " +
+                    (isActive ? " after:scale-x-100 " + (isGold ? "text-amber-900" : "text-slate-950") : "")
+                  }
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
 
           {/* CTA Button */}
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link
-              href="/contact"
+              href={SCHEDULING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-md bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-800"
             >
               Schedule a Conversation
@@ -84,7 +107,7 @@ export function Navbar() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -102,27 +125,32 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="lg:hidden">
           <div className="space-y-1 px-6 pb-3 pt-2">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`block rounded-lg px-3 py-2 text-base font-semibold tracking-tight ${
-                  item.secondary
-                    ? "text-slate-500 hover:bg-slate-50"
-                    : "text-slate-900 hover:bg-slate-50"
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <Link
-              href="/contact"
+            {navigation.map((item) => {
+              const isGold = item.accent === "gold";
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={
+                    "block rounded-lg px-3 py-2 text-base font-semibold tracking-tight hover:bg-slate-50 " +
+                    (isGold ? "text-amber-800" : "text-slate-900")
+                  }
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
+
+            <a
+              href={SCHEDULING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="block rounded-lg bg-slate-900 px-3 py-3 text-center text-base font-semibold text-white hover:bg-slate-800"
               onClick={() => setMobileMenuOpen(false)}
             >
               Schedule a Conversation
-            </Link>
+            </a>
           </div>
         </div>
       )}
