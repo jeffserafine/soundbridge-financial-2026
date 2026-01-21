@@ -62,10 +62,13 @@ export function WhoWeServe() {
     <section className="px-6 py-20">
       <div className="mx-auto max-w-6xl">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900">
+          <p className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold tracking-wide text-slate-200">
+            Individuals
+          </p>
+          <h2 className="mt-5 text-3xl md:text-4xl font-semibold tracking-tight text-slate-50">
             Who we serve
           </h2>
-          <p className="mt-4 text-base md:text-lg text-slate-600 max-w-3xl mx-auto">
+          <p className="mt-4 text-base md:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed">
             Strategy-first protection and planning for people with modern income, modern risk, and zero time
             for messy implementation.
           </p>
@@ -75,14 +78,14 @@ export function WhoWeServe() {
           {audiences.map((a) => (
             <div
               key={a.title}
-              className="rounded-2xl border border-slate-200 bg-white/70 backdrop-blur p-8 shadow-sm"
+              className="rounded-2xl border border-white/10 bg-white/[0.03] backdrop-blur p-8 shadow-sm transition-transform duration-200 hover:-translate-y-0.5"
             >
-              <h3 className="text-xl font-semibold text-slate-900">{a.title}</h3>
-              <p className="mt-2 text-slate-600">{a.description}</p>
-              <ul className="mt-4 space-y-2 text-slate-700">
+              <h3 className="text-xl font-semibold text-slate-50">{a.title}</h3>
+              <p className="mt-2 text-slate-300 leading-relaxed">{a.description}</p>
+              <ul className="mt-4 space-y-2 text-slate-200">
                 {a.bullets.map((b) => (
                   <li key={b} className="flex gap-2">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-emerald-600" aria-hidden="true" />
+                    <span className="mt-2 h-2 w-2 rounded-full bg-emerald-500" aria-hidden="true" />
                     <span>{b}</span>
                   </li>
                 ))}

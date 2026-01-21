@@ -28,28 +28,28 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
       <div className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Global">
-        <div className="flex h-24 items-center justify-between">
+        <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <div className="flex lg:flex-1">
-            <Link href="/" className="flex items-center gap-4">
+            <Link href="/" className="flex items-center">
               <Image
                 src="/brand/soundbridge_logo_transparent_2048.png"
                 alt="SoundBridge"
-                width={520}
-                height={170}
+                width={400}
+                height={130}
                 priority
-                sizes="(min-width: 1024px) 320px, (min-width: 768px) 260px, 220px"
-                className="h-[76px] w-auto md:h-[82px] lg:h-[88px]"
+                sizes="(min-width: 1024px) 200px, (min-width: 768px) 180px, 160px"
+                className="h-14 w-auto md:h-16 lg:h-[68px]"
               />
 
               {/* Wordmark extension */}
-              <span className="hidden sm:flex items-center gap-4 pl-2">
-                <span className="h-8 w-px bg-slate-200" aria-hidden="true" />
-                <span className="flex flex-col leading-none">
-                  <span className="text-sm md:text-base font-semibold tracking-tight text-slate-900">
+              <span className="hidden sm:flex items-center ml-4">
+                <span className="h-10 w-px bg-slate-300/60" aria-hidden="true" />
+                <span className="flex flex-col leading-none ml-4">
+                  <span className="text-base md:text-lg font-semibold tracking-tight text-slate-800">
                     Financial
                   </span>
-                  <span className="mt-1 text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
+                  <span className="text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">
                     Strategies
                   </span>
                 </span>
