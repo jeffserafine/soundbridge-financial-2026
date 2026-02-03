@@ -4,26 +4,40 @@
 
 @layer base {
   :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 215 27.9% 16.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 157 45% 30%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 189 94% 43%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background: 60 5% 96%; /* Warm Stone-50ish */
+    --foreground: 157 45% 10%; /* Deep Forest */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 157 45% 15%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 157 45% 15%;
+    
+    --primary: 157 35% 28%; /* Forest 700ish */
+    --primary-foreground: 60 5% 96%;
+    
+    --secondary: 157 20% 92%; /* Forest 50 */
+    --secondary-foreground: 157 45% 15%;
+    
+    --muted: 60 5% 90%;
+    --muted-foreground: 215 10% 45%;
+    
+    --accent: 84 81% 44%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    
+    --border: 214.3 20% 90%;
+    --input: 214.3 20% 90%;
     --ring: 157 45% 30%;
-    --radius: 0.5rem;
+    --radius: 0.3rem; /* Tighter radius for financial precision */
+  }
+
+  .dark {
+    --background: 157 45% 5%;
+    --foreground: 60 5% 90%;
+    /* ... dark mode values would go here ... */
   }
 }
 
@@ -31,86 +45,26 @@
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-aura-950 text-slate-100 antialiased;
+    @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-
-  /* Aura grain texture */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.04;
-    z-index: 1;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' /%3E%3C/svg%3E");
-    pointer-events: none;
-  }
-
-  /* Smooth scrolling */
-  html {
-    scroll-behavior: smooth;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-tight text-slate-900;
   }
 }
 
-/* Aura radial glow utility */
-@layer utilities {
-  /* Aura base surfaces (custom utilities so @apply works) */
-  .bg-aura-950 { background-color: #020617; }
-  .bg-aura-900 { background-color: #02081A; }
-  .bg-aura-850 { background-color: #0B1220; }
-  .bg-aura-800 { background-color: #0F172A; }
-
-  .text-aura-foreground { color: rgb(241 245 249); }
-
-  .glow-radial-blue {
-    background: radial-gradient(circle at center, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
-  }
-
-  .glow-radial-cyan {
-    background: radial-gradient(circle at center, rgba(34, 211, 238, 0.12) 0%, transparent 70%);
-  }
-
-  .glow-radial-amber {
-    background: radial-gradient(circle at center, rgba(251, 191, 36, 0.1) 0%, transparent 70%);
-  }
-
-  .glow-radial-emerald {
-    background: radial-gradient(circle at center, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
-  }
-
-  /* Magnetic hover card */
-  .card-magnetic {
-    @apply transition-all duration-300 ease-out;
-    @apply hover:-translate-y-1 hover:shadow-2xl;
-  }
-
-  /* Gradient border glow */
-  .border-glow {
-    position: relative;
-    border: 1px solid transparent;
-    background-clip: padding-box;
-  }
-
-  .border-glow::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.5), rgba(34, 211, 238, 0.3));
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
-  .border-glow:hover::before {
-    opacity: 1;
-  }
+/* Refined Noise Texture - More subtle */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04; 
+  z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: overlay;
 }

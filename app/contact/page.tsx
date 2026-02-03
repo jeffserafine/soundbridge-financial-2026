@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useState, type FormEvent } from "react";
+import Link from "next/link";
+import { Mail, MapPin, CheckCircle2 } from "lucide-react";
 
 const FORMSPREE_GENERAL = "https://formspree.io/f/mblnyoaq";
 const FORMSPREE_HNW = "https://formspree.io/f/xrbnkqao";
@@ -59,7 +61,6 @@ function FormCard({
       setStatus("error");
       setErrorMsg(data?.error || "Something went wrong. Please try again.");
     } catch (err) {
-      // Log to help diagnose issues (CORS, network, Formspree response, etc.)
       console.error("Form submit failed:", err);
       setStatus("error");
       setErrorMsg("Network error. Please try again.");
@@ -67,11 +68,11 @@ function FormCard({
   }
 
   return (
-    <section className="rounded-2xl border border-white/10 bg-slate-900/40 p-6 shadow-sm backdrop-blur md:p-8">
-      <h2 className="text-xl font-semibold tracking-tight text-slate-50">
+    <section className="rounded-xl border border-stone-200 bg-white p-6 shadow-sm hover:border-forest-200 transition-all md:p-8">
+      <h2 className="text-xl font-serif font-medium text-forest-900">
         {title}
       </h2>
-      <p className="mt-2 text-slate-300">{subtitle}</p>
+      <p className="mt-2 text-sm text-stone-600">{subtitle}</p>
 
       <form onSubmit={onSubmit} className="mt-6 grid gap-4">
         <input type="hidden" name="form" value={formName} />
@@ -79,20 +80,20 @@ function FormCard({
 
         <div className="grid gap-4 md:grid-cols-2">
           <div className="grid gap-2">
-            <label htmlFor={`${formName}-name`} className="text-sm font-semibold text-slate-200">
+            <label htmlFor={`${formName}-name`} className="text-sm font-semibold text-stone-700">
               Name
             </label>
             <input
               id={`${formName}-name`}
               name="name"
               required
-              className="h-11 rounded-xl border border-white/10 bg-slate-950/60 px-4 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-emerald-500/50"
+              className="h-11 rounded-lg border border-stone-200 bg-stone-50 px-4 text-stone-900 placeholder:text-stone-400 outline-none transition focus:border-forest-500 focus:ring-1 focus:ring-forest-500"
               placeholder="Your name"
             />
           </div>
 
           <div className="grid gap-2">
-            <label htmlFor={`${formName}-email`} className="text-sm font-semibold text-slate-200">
+            <label htmlFor={`${formName}-email`} className="text-sm font-semibold text-stone-700">
               Email
             </label>
             <input
@@ -100,7 +101,7 @@ function FormCard({
               name="email"
               type="email"
               required
-              className="h-11 rounded-xl border border-white/10 bg-slate-950/60 px-4 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-emerald-500/50"
+              className="h-11 rounded-lg border border-stone-200 bg-stone-50 px-4 text-stone-900 placeholder:text-stone-400 outline-none transition focus:border-forest-500 focus:ring-1 focus:ring-forest-500"
               placeholder="you@company.com"
             />
           </div>
@@ -108,20 +109,20 @@ function FormCard({
 
         <div className="grid gap-4 md:grid-cols-2">
           <div className="grid gap-2">
-            <label htmlFor={`${formName}-phone`} className="text-sm font-semibold text-slate-200">
+            <label htmlFor={`${formName}-phone`} className="text-sm font-semibold text-stone-700">
               Phone (optional)
             </label>
             <input
               id={`${formName}-phone`}
               name="phone"
-              className="h-11 rounded-xl border border-white/10 bg-slate-950/60 px-4 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-emerald-500/50"
+              className="h-11 rounded-lg border border-stone-200 bg-stone-50 px-4 text-stone-900 placeholder:text-stone-400 outline-none transition focus:border-forest-500 focus:ring-1 focus:ring-forest-500"
               placeholder="(###) ###-####"
             />
           </div>
 
           {variant === "general" ? (
             <div className="grid gap-2">
-              <label htmlFor={`${formName}-who`} className="text-sm font-semibold text-slate-200">
+              <label htmlFor={`${formName}-who`} className="text-sm font-semibold text-stone-700">
                 I am a
               </label>
               <select
@@ -129,7 +130,7 @@ function FormCard({
                 name="segment"
                 defaultValue=""
                 required
-                className="h-11 rounded-xl border border-white/10 bg-slate-950/60 px-4 text-slate-100 outline-none transition focus:border-emerald-500/50"
+                className="h-11 rounded-lg border border-stone-200 bg-stone-50 px-4 text-stone-900 outline-none transition focus:border-forest-500 focus:ring-1 focus:ring-forest-500"
               >
                 <option value="" disabled>
                   Select one
@@ -144,7 +145,7 @@ function FormCard({
             </div>
           ) : (
             <div className="grid gap-2">
-              <label htmlFor={`${formName}-networth`} className="text-sm font-semibold text-slate-200">
+              <label htmlFor={`${formName}-networth`} className="text-sm font-semibold text-stone-700">
                 Approximate net worth
               </label>
               <select
@@ -152,7 +153,7 @@ function FormCard({
                 name="netWorth"
                 defaultValue=""
                 required
-                className="h-11 rounded-xl border border-white/10 bg-slate-950/60 px-4 text-slate-100 outline-none transition focus:border-emerald-500/50"
+                className="h-11 rounded-lg border border-stone-200 bg-stone-50 px-4 text-stone-900 outline-none transition focus:border-forest-500 focus:ring-1 focus:ring-forest-500"
               >
                 <option value="" disabled>
                   Select a range
@@ -169,7 +170,7 @@ function FormCard({
         {variant === "hnw" && (
           <div className="grid gap-4 md:grid-cols-2">
             <div className="grid gap-2">
-              <label htmlFor={`${formName}-timeline`} className="text-sm font-semibold text-slate-200">
+              <label htmlFor={`${formName}-timeline`} className="text-sm font-semibold text-stone-700">
                 Timeline
               </label>
               <select
@@ -177,7 +178,7 @@ function FormCard({
                 name="timeline"
                 defaultValue=""
                 required
-                className="h-11 rounded-xl border border-white/10 bg-slate-950/60 px-4 text-slate-100 outline-none transition focus:border-emerald-500/50"
+                className="h-11 rounded-lg border border-stone-200 bg-stone-50 px-4 text-stone-900 outline-none transition focus:border-forest-500 focus:ring-1 focus:ring-forest-500"
               >
                 <option value="" disabled>
                   Select
@@ -191,13 +192,13 @@ function FormCard({
             </div>
 
             <div className="grid gap-2">
-              <label htmlFor={`${formName}-ref`} className="text-sm font-semibold text-slate-200">
+              <label htmlFor={`${formName}-ref`} className="text-sm font-semibold text-stone-700">
                 Referral source (optional)
               </label>
               <input
                 id={`${formName}-ref`}
                 name="referral"
-                className="h-11 rounded-xl border border-white/10 bg-slate-950/60 px-4 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-emerald-500/50"
+                className="h-11 rounded-lg border border-stone-200 bg-stone-50 px-4 text-stone-900 placeholder:text-stone-400 outline-none transition focus:border-forest-500 focus:ring-1 focus:ring-forest-500"
                 placeholder="Name, firm, or how you found us"
               />
             </div>
@@ -205,10 +206,10 @@ function FormCard({
         )}
 
         <div className="grid gap-2">
-          <span className="text-sm font-semibold text-slate-200">
+          <span className="text-sm font-semibold text-stone-700">
             What are you reaching out about?
           </span>
-          <div className="grid gap-2 rounded-xl border border-white/10 bg-slate-950/40 p-4">
+          <div className="grid gap-2 rounded-lg border border-stone-200 bg-stone-50 p-4">
             {reasonOptions.map((reason) => {
               const id = `${formName}-reason-${reason
                 .replace(/\s+/g, "-")
@@ -217,34 +218,34 @@ function FormCard({
                 <label
                   key={reason}
                   htmlFor={id}
-                  className="flex cursor-pointer items-start gap-3 text-sm text-slate-200"
+                  className="flex cursor-pointer items-start gap-3 text-sm text-stone-600 hover:text-stone-900"
                 >
                   <input
                     id={id}
                     name="reasons[]"
                     type="checkbox"
                     value={reason}
-                    className="mt-0.5 h-4 w-4 rounded border-white/20 bg-slate-950 text-emerald-500 focus:ring-2 focus:ring-emerald-500/40"
+                    className="mt-0.5 h-4 w-4 rounded border-stone-300 text-forest-600 focus:ring-forest-500"
                   />
                   <span className="leading-snug">{reason}</span>
                 </label>
               );
             })}
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-stone-500">
             Check any that apply. This helps us respond with the right next step.
           </p>
         </div>
 
         <div className="grid gap-2">
-          <label htmlFor={`${formName}-details`} className="text-sm font-semibold text-slate-200">
+          <label htmlFor={`${formName}-details`} className="text-sm font-semibold text-stone-700">
             Details (optional)
           </label>
           <textarea
             id={`${formName}-details`}
             name="details"
             rows={5}
-            className="rounded-xl border border-white/10 bg-slate-950/60 px-4 py-3 text-slate-100 placeholder:text-slate-500 outline-none transition focus:border-emerald-500/50"
+            className="rounded-lg border border-stone-200 bg-stone-50 px-4 py-3 text-stone-900 placeholder:text-stone-400 outline-none transition focus:border-forest-500 focus:ring-1 focus:ring-forest-500"
             placeholder={
               variant === "hnw"
                 ? "Add context (goals, timing, complexity, current coverage, questions)."
@@ -253,38 +254,41 @@ function FormCard({
           />
         </div>
 
-        <div className="mt-2 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center w-full">
             <button
               type="submit"
               disabled={status === "sending"}
-              className="inline-flex items-center justify-center rounded-full bg-emerald-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald-500 disabled:opacity-60"
+              className="inline-flex items-center justify-center rounded-sm bg-forest-900 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-forest-800 disabled:opacity-60 w-full sm:w-auto"
             >
-              {status === "sending" ? "Sending..." : "Submit"}
+              {status === "sending" ? "Sending..." : "Submit Inquiry"}
             </button>
 
-            <div className="flex items-center gap-3 sm:pl-2">
-              <span className="text-sm text-slate-400">Prefer to book time instead?</span>
+            <div className="flex items-center justify-center gap-3 sm:pl-4 w-full sm:w-auto border-t sm:border-t-0 sm:border-l border-stone-200 pt-3 sm:pt-0">
+              <span className="text-xs text-stone-500">Or book directly:</span>
               <a
                 href={SCHEDULING_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition-colors hover:bg-white/10"
+                className="inline-flex items-center justify-center rounded-sm border border-stone-300 bg-white px-4 py-2 text-xs font-semibold text-stone-700 transition-colors hover:bg-stone-50"
               >
-                Schedule
+                Schedule Call
               </a>
             </div>
           </div>
         </div>
 
         {status === "success" && (
-          <div className="rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-100">
-            Submitted. We will get back to you shortly.
+          <div className="rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+            <div className="flex items-center gap-2">
+              <CheckCircle2 className="h-4 w-4" />
+              <span>Submitted. We will get back to you shortly.</span>
+            </div>
           </div>
         )}
 
         {status === "error" && (
-          <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-100">
+          <div className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
             {errorMsg || "Something went wrong. Please try again."}
           </div>
         )}
@@ -324,47 +328,123 @@ export default function ContactPage() {
   );
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
-      <div id="schedule" className="scroll-mt-28" />
-      <header className="mx-auto mb-10 max-w-3xl text-center">
-        <p className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs font-semibold tracking-wide text-slate-200">
-          Contact
-        </p>
-        <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-50 sm:text-5xl">
-          Start the conversation
-        </h1>
-        <p className="mt-4 text-base leading-relaxed text-slate-300">
-          Choose the path that matches your situation. We respond quickly and keep the process clean.
-          If you would rather book time first, use the Schedule link next to Submit.
-        </p>
-      </header>
+    <div className="flex flex-col lg:flex-row">
 
-      <div className="grid gap-6 lg:grid-cols-2">
-        <FormCard
-          title="General Contact"
-          subtitle="Questions, intros, and general inquiries."
-          formName="General Contact"
-          source="/contact"
-          formspreeUrl={FORMSPREE_GENERAL}
-          reasonOptions={generalReasons}
-          variant="general"
-        />
+      {/* Left Panel: The Atmosphere (Forest) - Sticky on Desktop */}
+      <div className="w-full lg:w-5/12 bg-forest-900 text-white relative overflow-hidden lg:sticky lg:top-20 lg:h-[calc(100vh-5rem)] lg:self-start flex flex-col p-12 lg:p-16">
+        {/* Abstract Pattern */}
+        <div className="absolute top-0 right-0 w-full h-full bg-[url('/noise.png')] opacity-10 pointer-events-none" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-lime-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <FormCard
-          title="HNW Strategy Review"
-          subtitle="For complex planning, high-income, business ownership, or high net worth situations."
-          formName="HNW Strategy Review"
-          source="/contact"
-          formspreeUrl={FORMSPREE_HNW}
-          reasonOptions={hnwReasons}
-          variant="hnw"
-        />
+        <div className="relative z-10 mt-20 lg:mt-32">
+          <Link href="/" className="inline-block mb-8">
+            <span className="text-xl font-serif font-bold tracking-tight text-white/90 hover:text-white transition-colors">
+              SoundBridge
+            </span>
+          </Link>
+          
+          <h1 className="font-serif text-4xl lg:text-5xl font-medium tracking-tight leading-tight mb-6">
+            Start the <br /> conversation.
+          </h1>
+          <p className="text-forest-200 text-lg leading-relaxed max-w-sm">
+            Whether you are a physician planning for exit, or an advisor looking to partner, clarity starts with a brief introduction.
+          </p>
+        </div>
+
+        <div className="relative z-10 space-y-8 mt-12 lg:mt-auto mb-10">
+          <div className="flex items-start gap-4">
+            <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+              <Mail className="h-5 w-5 text-lime-400" />
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-white uppercase tracking-wider mb-1">Email Us</h3>
+              <a href="mailto:info@soundbridgefinancial.com" className="text-forest-100 hover:text-white transition-colors text-lg">
+                info@soundbridgefinancial.com
+              </a>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4">
+            <div className="p-2 rounded-lg bg-white/5 border border-white/10">
+              <MapPin className="h-5 w-5 text-lime-400" />
+            </div>
+            <div>
+              <h3 className="text-sm font-medium text-white uppercase tracking-wider mb-1">Office</h3>
+              <p className="text-forest-100 text-lg">
+                Los Angeles, CA <br />
+                <span className="text-sm text-forest-300">Serving clients nationwide.</span>
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <p className="mx-auto mt-10 max-w-3xl text-center text-xs text-slate-400">
-        This material is for informational purposes only and is not intended as tax or legal advice.
-        Insurance and financial strategies vary by individual circumstances. Consult your own advisors.
-      </p>
+      {/* Right Panel: The Forms (Stone) - Scrollable */}
+      <div className="w-full lg:w-7/12 bg-stone-50 lg:ml-auto min-h-screen">
+        <div className="px-6 py-16 lg:px-16 lg:py-24">
+          <div className="max-w-xl mx-auto space-y-12">
+            
+            <div className="space-y-2">
+              <h2 className="text-sm font-mono text-stone-500 uppercase tracking-widest">
+                Select your path
+              </h2>
+              <p className="text-stone-600 text-sm">
+                Choose the form that best matches your needs.
+              </p>
+            </div>
+
+            <div className="grid gap-10">
+              <FormCard
+                title="Private Client Inquiry"
+                subtitle="For complex planning, high-income, business ownership, or high net worth situations."
+                formName="HNW Strategy Review"
+                source="/contact"
+                formspreeUrl={FORMSPREE_HNW}
+                reasonOptions={hnwReasons}
+                variant="hnw"
+              />
+
+              <div className="relative">
+                <div className="absolute inset-0 flex items-center" aria-hidden="true">
+                  <div className="w-full border-t border-stone-200"></div>
+                </div>
+                <div className="relative flex justify-center">
+                  <span className="bg-stone-50 px-2 text-sm text-stone-500">OR</span>
+                </div>
+              </div>
+
+              <FormCard
+                title="General Contact"
+                subtitle="Questions, intros, and general inquiries."
+                formName="General Contact"
+                source="/contact"
+                formspreeUrl={FORMSPREE_GENERAL}
+                reasonOptions={generalReasons}
+                variant="general"
+              />
+            </div>
+
+            <div className="border-t border-stone-200 pt-8 mt-12">
+              <div className="flex items-center gap-2 text-forest-900 mb-2">
+                <CheckCircle2 className="h-5 w-5" />
+                <span className="font-semibold text-sm">Advisor Partnership?</span>
+              </div>
+              <p className="text-sm text-stone-600 mb-4">
+                CPAs, P&C Agents, and Wealth Managers looking to implement a protection department should visit our Alliance page.
+              </p>
+              <Link href="/alliances" className="text-sm font-medium text-forest-700 hover:text-forest-900 hover:underline underline-offset-4">
+                View Alliance Program &rarr;
+              </Link>
+            </div>
+
+            <p className="text-xs text-stone-400 pt-8">
+              This material is for informational purposes only and is not intended as tax or legal advice.
+              Insurance and financial strategies vary by individual circumstances. Consult your own advisors.
+            </p>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 }

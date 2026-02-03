@@ -1,9 +1,13 @@
-import { Alliance } from "@/components/sections/alliance";
+import { AllianceHero } from "@/components/sections/alliance-hero";
+import { PartnershipMatrix } from "@/components/sections/partnership-matrix";
+import { AllianceInquiry } from "@/components/sections/alliance-inquiry";
 
 export default function AlliancesPage() {
   return (
-    <main className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-      <Alliance />
+    <main>
+      <AllianceHero />
+      <PartnershipMatrix />
+      <AllianceInquiry />
     </main>
   );
 }
