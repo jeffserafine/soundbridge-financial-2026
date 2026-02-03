@@ -3,31 +3,22 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-
-const SCHEDULING_URL = "https://calendar.app.google/4hWgcNAGEZ6qp9nJA";
-
-type NavItem = {
-  name: string;
-  href: string;
-  accent?: "gold";
-};
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
 
-  const navigation: NavItem[] = [
+  const navigation = [
     { name: "Home", href: "/" },
+    { name: "For Individuals", href: "/individuals" },
     { name: "How It Works", href: "/how-it-works" },
-    { name: "Who We Serve", href: "/individuals" },
-    { name: "Alliances", href: "/alliances", accent: "gold" },
+    { name: "Contact", href: "/contact" },
+    { name: "Alliances", href: "/alliances", secondary: true },
   ];
 
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-slate-200 bg-white/80 backdrop-blur-md">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Global">
+    <nav className="fixed top-0 z-50 w-full border-b border-stone-200 bg-white/90 backdrop-blur-md transition-all">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-24 items-center justify-between">
           {/* Logo */}
           <div className="flex lg:flex-1">
@@ -39,18 +30,16 @@ export function Navbar() {
                 height={170}
                 priority
                 sizes="(min-width: 1024px) 320px, (min-width: 768px) 260px, 220px"
-                className="h-[76px] w-auto md:h-[82px] lg:h-[88px]"
+                className="h-[60px] w-auto md:h-[72px]"
               />
-
-              {/* Wordmark extension */}
-              <span className="hidden sm:flex items-center gap-4 pl-2">
-                <span className="h-8 w-px bg-slate-200" aria-hidden="true" />
-                <span className="flex flex-col leading-none">
-                  <span className="text-sm md:text-base font-semibold tracking-tight text-slate-900">
-                    Financial
+              
+              <span className="hidden lg:flex items-center gap-4 pl-4 border-l border-stone-200 h-10">
+                 <span className="flex flex-col leading-none">
+                  <span className="text-sm font-serif font-bold tracking-tight text-forest-900">
+                    Financial Strategies
                   </span>
-                  <span className="mt-1 text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-                    Strategies
+                  <span className="mt-1 text-[10px] font-mono uppercase tracking-[0.2em] text-stone-500">
+                    Est. 2025
                   </span>
                 </span>
               </span>
@@ -59,47 +48,28 @@ export function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex lg:gap-x-10">
-            {navigation.map((item) => {
-              const isActive = pathname === item.href;
-              const isGold = item.accent === "gold";
-
-              const baseText = isGold ? "text-amber-700" : "text-slate-700";
-              const hoverText = isGold ? "hover:text-amber-800" : "hover:text-slate-950";
-              const underlineGradient = isGold
-                ? "after:bg-gradient-to-r after:from-amber-500 after:to-yellow-400"
-                : "after:bg-gradient-to-r after:from-emerald-600 after:to-lime-500";
-
-              return (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={
-                    "relative text-base font-semibold tracking-[0.01em] transition-colors " +
-                    baseText +
-                    " " +
-                    hoverText +
-                    " after:absolute after:-bottom-2 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 " +
-                    underlineGradient +
-                    " after:transition-transform after:duration-200 hover:after:scale-x-100 " +
-                    (isActive ? " after:scale-x-100 " + (isGold ? "text-amber-900" : "text-slate-950") : "")
-                  }
-                >
-                  {item.name}
-                </Link>
-              );
-            })}
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`text-sm font-medium tracking-wide transition-colors ${
+                  item.secondary 
+                    ? "text-stone-500 hover:text-forest-700" 
+                    : "text-forest-900 hover:text-forest-700"
+                }`}
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
 
           {/* CTA Button */}
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link
-              href={SCHEDULING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md bg-slate-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-slate-800"
+              href="/contact"
+              className="rounded-sm bg-forest-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition-all hover:bg-forest-800 hover:shadow-md"
             >
-              Schedule a Conversation
+              Schedule Conversation
             </Link>
           </div>
 
@@ -107,7 +77,7 @@ export function Navbar() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-forest-900"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <span className="sr-only">Open main menu</span>
@@ -123,34 +93,31 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden">
-          <div className="space-y-1 px-6 pb-3 pt-2">
-            {navigation.map((item) => {
-              const isGold = item.accent === "gold";
-              return (
+        <div className="lg:hidden absolute top-24 left-0 w-full bg-white border-b border-stone-200 shadow-xl">
+          <div className="space-y-1 px-6 pb-6 pt-2">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`block rounded-lg px-3 py-4 text-base font-serif font-medium ${
+                  item.secondary
+                    ? "text-stone-500 hover:bg-stone-50"
+                    : "text-forest-900 hover:bg-forest-50"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <div className="mt-6 pt-6 border-t border-stone-100">
                 <Link
-                  key={item.name}
-                  href={item.href}
-                  className={
-                    "block rounded-lg px-3 py-2 text-base font-semibold tracking-tight hover:bg-slate-50 " +
-                    (isGold ? "text-amber-800" : "text-slate-900")
-                  }
-                  onClick={() => setMobileMenuOpen(false)}
+                href="/contact"
+                className="block w-full rounded-sm bg-forest-900 px-3 py-4 text-center text-base font-semibold text-white hover:bg-forest-800"
+                onClick={() => setMobileMenuOpen(false)}
                 >
-                  {item.name}
+                Schedule Conversation
                 </Link>
-              );
-            })}
-
-            <a
-              href={SCHEDULING_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block rounded-lg bg-slate-900 px-3 py-3 text-center text-base font-semibold text-white hover:bg-slate-800"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Schedule a Conversation
-            </a>
+            </div>
           </div>
         </div>
       )}

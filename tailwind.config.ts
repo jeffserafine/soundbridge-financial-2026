@@ -1,9 +1,8 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 import type { Config } from "tailwindcss";
-import tailwindAnimate from "tailwindcss-animate";
-import typography from "@tailwindcss/typography";
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: "class" as const,
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -12,81 +11,98 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#020617', // Slate 950 (Ink Navy Base)
-        surface: '#0f172a', // Slate 900 (Card Surface)
-        foreground: '#f8fafc', // Slate 50 (Text)
-        
-        // Brand Accents
-        brand: {
-          blue: '#3b82f6', // Electric Blue (Primary Action)
-          cyan: '#06b6d4', // Cyan (Data/Tech)
-          amber: '#f59e0b', // Amber (Value/Human)
-          glow: '#60a5fa', // Soft Blue Glow
+        // MAPPED BRAND COLORS
+        // "forest" is now mapped to SoundBridge NAVY
+        forest: {
+          50: '#f0f4f8',
+          100: '#d9e2ec',
+          200: '#bcccdc',
+          300: '#9fb3c8',
+          400: '#829ab1',
+          500: '#627d98',
+          600: '#486581',
+          700: '#334e68',  // Standard Navy
+          800: '#243b53',  // Deep Navy
+          900: '#102a43',  // Darkest Navy (Primary)
+          950: '#061626',  // Almost Black Blue
         },
-
-        // Shadcn UI tokens (mapped to Aura system)
-        card: {
-          DEFAULT: '#0f172a',
-          foreground: '#f8fafc',
+        // "lime" is now mapped to SoundBridge GOLD
+        lime: {
+          50: '#fdfdf2',
+          100: '#fcfcd5',
+          200: '#faf7aa',
+          300: '#f7ef75',
+          400: '#f0e137',
+          500: '#d6c311',  // Rich Gold
+          600: '#b09d09',  // Dark Gold
+          700: '#8a7908',
+          800: '#695b09',
+          900: '#564b0e',
+          950: '#322b05',
         },
-        popover: {
-          DEFAULT: '#0f172a',
-          foreground: '#f8fafc',
+        stone: {
+           50: '#fafaf9',
+           100: '#f5f5f4',
+           200: '#e7e5e4',
+           300: '#d6d3d1',
+           400: '#a8a29e',
+           500: '#78716c',
+           600: '#57534e',
+           700: '#44403c',
+           800: '#292524',
+           900: '#1c1917',
+           950: '#0c0a09',
         },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: '#3b82f6',
-          foreground: '#ffffff',
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: '#1e293b',
-          foreground: '#f8fafc',
-        },
-        muted: {
-          DEFAULT: '#1e293b',
-          foreground: '#94a3b8',
-        },
-        accent: {
-          DEFAULT: '#1e293b',
-          foreground: '#f8fafc',
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: '#ef4444',
-          foreground: '#ffffff',
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
-        border: '#1e293b',
-        input: '#1e293b',
-        ring: '#3b82f6',
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
+      },
+      borderRadius: {
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
+        sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
         sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
-      },
-      borderRadius: {
-        lg: 'var(--radius)',
-        md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)',
-      },
-      backgroundImage: {
-        'aura-gradient': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
-        'card-glow': 'linear-gradient(180deg, rgba(59, 130, 246, 0.1) 0%, rgba(0, 0, 0, 0) 100%)',
-      },
-      animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
-      },
-      keyframes: {
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        'glow-pulse': {
-          '0%, 100%': { opacity: '0.5' },
-          '50%': { opacity: '1' },
-        },
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
       },
     },
   },
-  plugins: [tailwindAnimate, typography],
+  plugins: [
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
 };
 
 export default config;
