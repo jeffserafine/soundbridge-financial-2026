@@ -343,7 +343,7 @@ export default function ContactPage() {
             </span>
           </Link>
           
-          <h1 className="font-serif text-4xl lg:text-5xl font-medium tracking-tight leading-tight mb-6">
+          <h1 className="font-serif text-4xl lg:text-5xl font-medium tracking-tight leading-tight mb-6 text-white">
             Start the <br /> conversation.
           </h1>
           <p className="text-forest-200 text-lg leading-relaxed max-w-sm">

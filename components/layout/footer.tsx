@@ -11,7 +11,7 @@ export function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-5 lg:col-span-4">
             <Link href="/" className="inline-block mb-6">
-               <span className="text-2xl font-serif font-bold text-white tracking-tight">SoundBridge</span>
+               <span className="text-2xl font-serif font-bold text-white tracking-tight">SoundBridge Financial</span>
             </Link>
             <p className="text-sm text-stone-400 leading-relaxed max-w-sm mb-8">
               Strategy-first protection and planning for physicians, entertainers,
