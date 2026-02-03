@@ -3,10 +3,10 @@ import { Footer } from "./footer";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="relative z-10 flex min-h-screen flex-col">
       <Header />
-      {/* Navbar is h-24, so match the offset */}
-      <main className="flex-1 pt-24">{children}</main>
+      {/* Navbar is h-20, so match the offset */}
+      <main className="flex-1 pt-20">{children}</main>
       <Footer />
     </div>
   );
