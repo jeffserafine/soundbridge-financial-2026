@@ -11,8 +11,6 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // MAPPED BRAND COLORS
-        // "forest" is now mapped to SoundBridge NAVY
         forest: {
           50: '#f0f4f8',
           100: '#d9e2ec',
@@ -21,20 +19,19 @@ const config: Config = {
           400: '#829ab1',
           500: '#627d98',
           600: '#486581',
-          700: '#334e68',  // Standard Navy
-          800: '#243b53',  // Deep Navy
-          900: '#102a43',  // Darkest Navy (Primary)
-          950: '#061626',  // Almost Black Blue
+          700: '#334e68',
+          800: '#243b53',
+          900: '#102a43',
+          950: '#061626',
         },
-        // "lime" is now mapped to SoundBridge GOLD
         lime: {
           50: '#fdfdf2',
           100: '#fcfcd5',
           200: '#faf7aa',
           300: '#f7ef75',
           400: '#f0e137',
-          500: '#d6c311',  // Rich Gold
-          600: '#b09d09',  // Dark Gold
+          500: '#d6c311',
+          600: '#b09d09',
           700: '#8a7908',
           800: '#695b09',
           900: '#564b0e',
@@ -96,6 +93,18 @@ const config: Config = {
         sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
         serif: ['var(--font-serif)', 'Georgia', 'serif'],
+      },
+      // Animation configuration
+      animation: {
+        shimmer: "shimmer 4.5s linear infinite",
+      },
+      keyframes: {
+        shimmer: {
+          "0%": { left: "-10%", opacity: "0" },
+          "10%": { opacity: "1" },
+          "90%": { opacity: "1" },
+          "100%": { left: "110%", opacity: "0" },
+        },
       },
     },
   },

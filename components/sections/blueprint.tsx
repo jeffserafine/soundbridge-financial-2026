@@ -1,3 +1,5 @@
+"use client";
+
 import { CheckCircle2 } from "lucide-react";
 
 const steps = [
@@ -25,9 +27,9 @@ const steps = [
 
 export function Blueprint() {
   return (
-    <section className="px-6 py-24 bg-stone-50 border-t border-stone-200">
+    <section className="px-6 py-24 bg-stone-50 border-t border-stone-200 overflow-hidden">
       <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-3xl text-center mb-16">
+        <div className="mx-auto max-w-3xl text-center mb-20">
           <h2 className="text-sm font-mono text-stone-500 mb-4 uppercase tracking-widest">
             The Process
           </h2>
@@ -40,19 +42,32 @@ export function Blueprint() {
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 relative">
-          {/* Connecting Line (Desktop Only) */}
-          <div className="hidden lg:block absolute top-8 left-0 w-full h-px bg-forest-200 -z-10" />
+          
+          {/* THE GOLDEN THREAD (Desktop) */}
+          {/* Z-Index Fix: Removed negative z-index. The cards are z-10, so this z-0 thread sits safely behind them but in front of the background. */}
+          <div className="hidden lg:block absolute top-[2.25rem] left-0 w-full h-px pointer-events-none">
+             {/* The Base Track */}
+             <div className="w-full h-full border-t-2 border-dashed border-lime-500/30" />
+             
+             {/* THE ANIMATED BEAM */}
+             {/* Uses the 'shimmer' keyframes from tailwind.config.ts */}
+             <div className="absolute top-[-2px] left-0 w-32 h-1 bg-gradient-to-r from-transparent via-lime-400 to-transparent opacity-70 animate-shimmer" />
+          </div>
 
           {steps.map((s) => (
             <div
               key={s.title}
-              className="relative flex flex-col bg-white p-8 rounded-lg shadow-sm border border-stone-100 hover:border-forest-200 transition-colors"
+              // Z-Index z-10 ensures cards sit ON TOP of the thread
+              className="relative z-10 flex flex-col bg-white p-8 rounded-lg shadow-sm border border-stone-100 hover:border-forest-200 transition-all group"
             >
+              {/* Step Number Circle */}
               <div className="flex items-center justify-between mb-6">
-                <span className="text-4xl font-serif text-forest-100 font-bold">
-                  {s.step}
-                </span>
-                <CheckCircle2 className="h-6 w-6 text-lime-600" />
+                <div className="relative flex items-center justify-center w-12 h-12 rounded-full bg-stone-50 border border-stone-100 group-hover:border-lime-500/50 group-hover:bg-lime-50/10 transition-colors z-20">
+                    <span className="text-xl font-serif text-forest-300 font-bold group-hover:text-forest-600 transition-colors">
+                    {s.step}
+                    </span>
+                </div>
+                <CheckCircle2 className="h-6 w-6 text-lime-600/20 group-hover:text-lime-600 transition-colors" />
               </div>
               
               <h4 className="text-lg font-serif font-medium text-forest-900 mb-3">

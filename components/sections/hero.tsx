@@ -4,23 +4,38 @@ import { ArrowRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <div className="relative isolate min-h-[90vh] flex flex-col justify-center px-6 lg:px-8 border-b border-stone-200 bg-stone-50/50">
-      <div className="mx-auto max-w-5xl">
+    <div className="relative isolate min-h-[90vh] flex flex-col justify-center px-6 lg:px-8 border-b border-stone-200 bg-stone-50 overflow-hidden">
+      
+      {/* 1. ATMOSPHERE LAYER (The Kinetic Element) */}
+      {/* This layer sits behind the content. 
+          'mix-blend-multiply' helps the image tint with the background color.
+          'opacity-5' ensures it is very subtle (a texture, not a photo).
+      */}
+      <div 
+        className="absolute inset-0 -z-10 bg-cover bg-center opacity-5 mix-blend-multiply pointer-events-none grayscale contrast-125"
+        style={{ backgroundImage: "url('/images/hero-structure.jpg')" }} 
+      />
+      
+      {/* 2. Gradient Fade (Bottom) */}
+      {/* Softens the bottom edge so it flows into the next section */}
+      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-stone-50 to-transparent -z-10" />
+
+      <div className="mx-auto max-w-5xl relative z-10">
         <div className="text-center">
           {/* Eyebrow / Trust Signal */}
           <div className="mb-8 flex justify-center">
-            <span className="inline-flex items-center rounded-full border border-forest-200 bg-white/50 px-3 py-1 text-xs font-medium text-forest-800 backdrop-blur-sm">
+            <span className="inline-flex items-center rounded-full border border-forest-200 bg-white/80 px-3 py-1 text-xs font-medium text-forest-800 backdrop-blur-md shadow-sm">
               Wealth Strategy for the Modern Era
             </span>
           </div>
 
-          {/* Main Headline - Serif for Authority */}
+          {/* Main Headline */}
           <h1 className="font-serif text-5xl font-medium tracking-tight text-forest-950 sm:text-7xl lg:text-8xl">
             Tune out the noise. <br />
             <span className="italic text-forest-800">Amplify clarity.</span>
           </h1>
 
-          {/* Subhead - Sans for Readability */}
+          {/* Subhead */}
           <p className="mt-8 text-lg leading-8 text-stone-600 max-w-2xl mx-auto font-sans">
             Strategy-first protection and planning for physicians, entertainers, entrepreneurs, and high-performing individuals. Built for modern income, modern risk, and modern life.
           </p>
@@ -30,7 +45,7 @@ export function Hero() {
             <Button 
               asChild 
               size="lg" 
-              className="bg-forest-900 text-white hover:bg-forest-800 rounded-sm px-8 h-12 text-base font-medium tracking-wide shadow-sm"
+              className="bg-forest-900 text-white hover:bg-forest-800 rounded-sm px-8 h-12 text-base font-medium tracking-wide shadow-sm transition-transform active:scale-95"
             >
               <Link href="/contact">Schedule a Conversation</Link>
             </Button>
@@ -48,8 +63,8 @@ export function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Decorative Footer Line for Hero */}
+      
+      {/* Decorative Footer Line */}
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-forest-200 to-transparent opacity-50" />
     </div>
   );
